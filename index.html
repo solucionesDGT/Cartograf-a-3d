@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartografía de Lenguas Indígenas del Cauca | Maqueta 3D</title>
+  <meta name="description" content="Maqueta 3D del departamento del Cauca con los territorios y procesos de revitalización de las lenguas indígenas. Explora el modelo, el recorrido de 360° y el render final.">
+  <meta property="og:title" content="Cartografía de Lenguas Indígenas del Cauca">
+  <meta property="og:description" content="Maqueta 3D interactiva, recorrido de 360° y render final.">
+  <meta property="og:image" content="assets/poster.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Visor 3D de Google (gratuito, sin cuenta) -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <header class="cabecera">
+    <div class="franja" aria-hidden="true">
+      <span style="--c:#E08A4F"></span><span style="--c:#9DC04A"></span><span style="--c:#E8527A"></span>
+      <span style="--c:#3F9BD6"></span><span style="--c:#A57BBE"></span><span style="--c:#E6D57A"></span>
+      <span style="--c:#A36F3E"></span><span style="--c:#4FBFC0"></span><span style="--c:#B7423F"></span>
+    </div>
+    <div class="contenedor cabecera__texto">
+      <h1>Cartografía de Lenguas Indígenas del Cauca</h1>
+      <p class="entradilla">Maqueta 3D del departamento del Cauca con los territorios de sus pueblos y los procesos de revitalización de sus lenguas originarias.</p>
+      <nav class="indice" aria-label="Secciones">
+        <a href="#modelo">Maqueta interactiva</a>
+        <a href="#recorrido">Recorrido de 360°</a>
+        <a href="#render">Render final</a>
+        <a href="#descargas">Descargas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. Modelo 3D -->
+    <section id="modelo" class="bloque">
+      <div class="contenedor bloque__titulo">
+        <h2>Maqueta interactiva</h2>
+        <p class="ayuda">Arrastra para girar. Usa la rueda del ratón o pellizca para acercar. Doble clic para centrar un punto.</p>
+      </div>
+
+      <div class="escenario" id="escenario">
+        <model-viewer
+          id="visor"
+          src="assets/maqueta-cauca.glb"
+          poster="assets/poster.jpg"
+          alt="Maqueta 3D del Cauca sobre un pedestal oscuro, con los territorios indígenas en colores y relieve"
+          camera-controls
+          touch-action="pan-y"
+          auto-rotate
+          auto-rotate-delay="2000"
+          rotation-per-second="12deg"
+          camera-orbit="0deg 50deg auto"
+          field-of-view="30deg"
+          min-camera-orbit="auto 0deg auto"
+          max-camera-orbit="auto 85deg auto"
+          shadow-intensity="1"
+          shadow-softness="0.8"
+          exposure="1.05"
+          environment-image="neutral"
+          interaction-prompt="auto">
+
+          <div class="carga" slot="progress-bar" id="carga" aria-hidden="true">
+            <div class="carga__barra" id="cargaBarra"></div>
+          </div>
+        </model-viewer>
+
+        <div class="controles" role="toolbar" aria-label="Controles de la maqueta">
+          <button type="button" id="btnGiro" aria-pressed="true">Pausar giro</button>
+          <button type="button" id="btnVista">Vista inicial</button>
+          <button type="button" id="btnCompleta">Pantalla completa</button>
+        </div>
+
+        <p class="estado" id="estado" role="status">Cargando maqueta (11 MB)…</p>
+      </div>
+    </section>
+
+    <!-- 2. Video -->
+    <section id="recorrido" class="bloque">
+      <div class="contenedor bloque__titulo">
+        <h2>Recorrido de 360°</h2>
+        <p class="ayuda">Giro completo de la maqueta en 10 segundos. Se reproduce en bucle.</p>
+      </div>
+      <div class="contenedor">
+        <figure class="medio">
+          <video id="video" src="assets/maqueta-cauca-360.mp4" poster="assets/poster.jpg"
+                 muted loop playsinline controls preload="metadata"
+                 aria-label="Video del giro de 360 grados alrededor de la maqueta"></video>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3. Render -->
+    <section id="render" class="bloque">
+      <div class="contenedor bloque__titulo">
+        <h2>Render final</h2>
+        <p class="ayuda">Imagen en alta resolución (1920 × 1080). Haz clic para ampliarla.</p>
+      </div>
+      <div class="contenedor">
+        <figure class="medio">
+          <button type="button" class="ampliar" id="btnAmpliar" aria-label="Ampliar el render final">
+            <img src="assets/maqueta-cauca-render.jpg" width="1920" height="1080" loading="lazy"
+                 alt="Render de la maqueta del Cauca vista a 45 grados, con el título en el frente del pedestal y la flecha de norte">
+          </button>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 4. Descargas -->
+    <section id="descargas" class="bloque">
+      <div class="contenedor bloque__titulo">
+        <h2>Descargas</h2>
+        <p class="ayuda">Archivos originales para presentaciones, documentos y visualización 3D.</p>
+      </div>
+      <div class="contenedor">
+        <ul class="descargas">
+          <li>
+            <div>
+              <strong>Modelo 3D</strong>
+              <span>GLB, 11,1 MB. Se abre en Blender, en el Visor 3D de Windows o en cualquier visor glTF.</span>
+            </div>
+            <a class="boton" href="assets/maqueta-cauca.glb" download="Maqueta_Cauca_Lenguas_Indigenas.glb">Descargar GLB</a>
+          </li>
+          <li>
+            <div>
+              <strong>Video de 360°</strong>
+              <span>MP4, 1920 × 1080, 10 s, 3,0 MB. Listo para presentaciones y pantallas.</span>
+            </div>
+            <a class="boton" href="assets/maqueta-cauca-360.mp4" download="Maqueta_Cauca_Giro360.mp4">Descargar video</a>
+          </li>
+          <li>
+            <div>
+              <strong>Render en alta resolución</strong>
+              <span>PNG, 1920 × 1080, 2,0 MB. Para documentos e impresos.</span>
+            </div>
+            <a class="boton" href="assets/maqueta-cauca-render.png" download="Maqueta_Cauca_Render.png">Descargar imagen</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <!-- Cambia este texto por tu nombre o el de tu estudio -->
+      <p>Maqueta 3D elaborada en Blender, 2026.</p>
+    </div>
+  </footer>
+
+  <dialog id="lightbox" aria-label="Render ampliado">
+    <button type="button" class="cerrar" id="btnCerrar">Cerrar</button>
+    <img id="imgGrande" data-src="assets/maqueta-cauca-render.png" alt="Render de la maqueta del Cauca en alta resolución">
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
